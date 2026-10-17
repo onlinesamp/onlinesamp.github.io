@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مرکز خدمات خلیل</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap');
+
+:root {
+  --bg:#0b0e13;
+  --card:#151a23;
+  --border:#2a303c;
+  --text:#f4f6fa;
+  --muted:#a0a9b9;
+  --green:#b7ff62;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Vazirmatn,Tahoma,sans-serif;
+}
+header{
+  position:sticky;top:0;z-index:10;
+  background:#0b0e13ed;backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  max-width:1050px;margin:auto;padding:15px 20px;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.logo{font-size:20px;font-weight:900;color:white;cursor:pointer}
+.logo span{color:var(--green)}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+nav button{
+  background:none;border:0;color:var(--muted);
+  font:inherit;font-size:12px;cursor:pointer
+}
+nav button:hover{color:var(--green)}
+main{max-width:1050px;margin:auto;padding:25px 20px 70px}
+.hero{
+  padding:55px 30px;border:1px solid var(--border);
+  border-radius:25px;
+  background:radial-gradient(ellipse at top left,#b7ff6217,transparent 50%),
+  linear-gradient(140deg,#171e29,#10131a);
+}
+.tag{
+  display:inline-block;color:var(--green);
+  border:1px solid #b7ff6250;border-radius:30px;
+  padding:7px 12px;font-size:12px;
+}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.5;margin:20px 0 10px}
+h1 span{color:var(--green)}
+h2{font-size:25px}
+h3{margin:12px 0 5px}
+p{line-height:2}
+.muted{color:var(--muted)}
+.btn{
+  display:inline-block;padding:12px 17px;
+  background:var(--green);color:#11160b;
+  border:0;border-radius:11px;font:inherit;
+  font-weight:900;cursor:pointer;text-decoration:none;
+  margin-top:10px;
+}
+.btn:hover{filter:brightness(.9)}
+.btn.secondary{background:#252c38;color:white}
+.section-title{margin:40px 0 20px}
+.section-title p{font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.card{
+  padding:23px;background:var(--card);
+  border:1px solid var(--border);border-radius:20px;
+}
+.service-card{cursor:pointer;transition:.2s}
+.service-card:hover{border-color:var(--green);transform:translateY(-3px)}
+.icon{font-size:30px}
+.card p{font-size:13px;color:var(--muted)}
+.page{display:none}
+.page.active{display:block;animation:appear .2s ease}
+@keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.back{
+  background:#202631;color:white;border:1px solid var(--border);
+  border-radius:10px;padding:10px 14px;font:inherit;cursor:pointer;
+  margin-bottom:20px;
+}
+.back:hover{border-color:var(--green)}
+label{display:block;margin:15px 0 7px;font-size:13px}
+input,select,textarea{
+  width:100%;padding:13px;background:#0c1017;color:white;
+  border:1px solid var(--border);border-radius:11px;
+  font:inherit;outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--green)}
+textarea{resize:vertical;min-height:115px}
+.note{
+  border-right:3px solid var(--green);padding:10px 14px;
+  background:#b7ff620a;color:var(--muted);
+  font-size:12px;line-height:2;margin-top:25px
+}
+.status{display:none;padding:13px;border-radius:10px;margin-top:15px;font-size:13px}
+.status.ok{display:block;background:#202e1a;color:var(--green)}
+.status.error{display:block;background:#351b20;color:#ffb6b6}
+button:disabled{opacity:.6;cursor:wait}
+footer{
+  text-align:center;padding:25px 15px;border-top:1px solid var(--border);
+  color:var(--muted);font-size:12px
+}
+@media(max-width:650px){
+  .grid{grid-template-columns:1fr}
+  .hero{padding:35px 20px}
+  nav{gap:8px}
+  nav button{font-size:11px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="logo" onclick="showPage('home')">KHALIL<span>.</span></div>
+    <nav>
+      <button onclick="showPage('home')">صفحه اصلی</button>
+      <button onclick="showPage('message')">پیام</button>
+      <button onclick="showPage('night')">خدمات شبانه</button>
+      <button onclick="showPage('complaint')">انتقادات</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- صفحه اصلی -->
+<section class="page active" id="home">
+  <div class="hero">
+    <span class="tag">سامانه رسمی خدمات • نسخه ۱.۰</span>
+    <h1>مرکز خدمات<br><span>خلیل</span></h1>
+    <p class="muted">
+      به سامانه درخواست‌های خلیل خوش آمدید.
+      برای ثبت پیام، پیگیری درخواست‌ها و سایر امور،
+      خدمت موردنظر را انتخاب کنید.
+      زمان پاسخ‌گویی به شرایط اپراتور بستگی دارد!
+    </p>
+    <button class="btn" onclick="goToServices()">مشاهده خدمات ←</button>
+  </div>
+
+  <div class="section-title" id="serviceHeading">
+    <h2>خدمات قابل ارائه</h2>
+    <p class="muted">برای ورود به هر بخش، روی کارت آن کلیک کنید.</p>
+  </div>
+
+  <div class="grid">
+    <article class="card service-card" onclick="showPage('message')">
+      <div class="icon">📨</div>
+      <h3>ارتباط با خلیل</h3>
+      <p>ارسال پیام، سؤال، درخواست یا حرف‌هایی که باید به گوش خلیل برسند.</p>
+      <span class="btn">ورود به بخش</span>
+    </article>
+
+    <article class="card service-card" onclick="showPage('night')">
+      <div class="icon">🌙</div>
+      <h3>خدمات ساعتی شبانه</h3>
+      <p>درخواست گفت‌وگو، تماس و خدمات ویژه ساعات غیراداری.</p>
+      <span class="btn">ثبت سفارش</span>
+    </article>
+
+    <article class="card service-card" onclick="showPage('complaint')">
+      <div class="icon">📝</div>
+      <h3>انتقاد و پیشنهاد</h3>
+      <p>فرصتی برای بیان مشکلات، اعتراض‌ها و پیشنهادهای سازنده.</p>
+      <span class="btn">ثبت پرونده</span>
+    </article>
+
+    <article class="card service-card" onclick="showPage('mashhad')">
+      <div class="icon">🛍️</div>
+      <h3>پیگیری مطالبات مشهد</h3>
+      <p>وضعیت سوغاتی‌ها، سفارش‌های معوق و گزارش بازگشت مسافر.</p>
+      <span class="btn">پیگیری مطالبات</span>
+    </article>
+
+    <article class="card service-card" onclick="showPage('rating')">
+      <div class="icon">⭐</div>
+      <h3>ارزیابی عملکرد خلیل</h3>
+      <p>امتیاز بدهید و نظر خود را درباره کیفیت خدمات ثبت کنید.</p>
+      <span class="btn">شروع ارزیابی</span>
+    </article>
+
+    <article class="card service-card" onclick="showPage('special')">
+      <div class="icon">📋</div>
+      <h3>درخواست ویژه</h3>
+      <p>برای درخواست‌هایی که در دسته‌بندی‌های بالا جا نمی‌شوند.</p>
+      <span class="btn">ثبت درخواست</span>
+    </article>
+  </div>
+
+  <div class="note">
+    لطفاً درخواست‌ها را در چارچوب شوخی دوستانه ثبت کنید.
+    پیام‌های ارسالی برای مدیر سامانه قابل مشاهده خواهند بود.
+  </div>
+</section>
+
+<!-- صفحه پیام -->
+<section class="page" id="message">
+  <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
+  <div class="card">
+    <div class="icon">📨</div>
+    <h2>ارتباط مستقیم با خلیل</h2>
+    <p class="muted">پیام خود را بنویسید. لطفاً کوتاه و واضح باشد.</p>
+    <form class="send-form">
+      <input type="hidden" name="بخش" value="ارتباط با خلیل">
+      <label>نام یا لقب (اختیاری)</label>
+      <input name="نام" placeholder="مثلاً یکی از هم‌کلاسی‌ها">
+      <label>موضوع پیام</label>
+      <select name="موضوع" required>
+        <option value="">انتخاب موضوع</option>
+        <option>سلام و احوال‌پرسی</option>
+        <option>درخواست سوغاتی</option>
+        <option>سؤال مهم</option>
+        <option>درخواست تماس</option>
+        <option>پیام دوستانه</option>
+        <option>سایر موارد</option>
+      </select>
+      <label>متن پیام</label>
+      <textarea name="متن پیام" required placeholder="خلیل جان، یه موضوع مهم..."></textarea>
+      <button class="btn" type="submit">ارسال پیام ←</button>
+      <div class="status"></div>
+    </form>
+  </div>
+</section>
+
+<!-- صفحه خدمات شبانه -->
+<section class="page" id="night">
+  <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
+  <div class="card">
+    <div class="icon">🌙</div>
+    <h2>خدمات ساعتی شبانه</h2>
+    <p class="muted">سفارش خارج از ساعات اداری؛ پاسخ‌گویی تضمین نمی‌شود!</p>
+    <form class="send-form">
+      <input type="hidden" name="بخش" value="خدمات ساعتی شبانه">
+      <label>نوع خدمت</label>
+      <select name="نوع خدمت" required>
+        <option value="">انتخاب کنید</option>
+        <option>گفت‌وگوی دوستانه</option>
+        <option>مشاوره درباره یک تصمیم مهم</option>
+        <option>تماس و احوال‌پرسی</option>
+        <option>همراهی در بیدار ماندن</option>
+        <option>بررسی یک موضوع کلاسی</option>
+      </select>
+      <label>مدت زمان</label>
+      <select name="مدت زمان" required>
+        <option>۱۵ دقیقه</option>
+        <option>۳۰ دقیقه</option>
+        <option>۱ ساعت</option>
+        <option>تا اطلاع ثانوی</option>
+      </select>
+      <label>توضیحات سفارش</label>
+      <textarea name="توضیحات" placeholder="شرح درخواست..."></textarea>
+      <button class="btn" type="submit">ثبت سفارش شبانه</button>
+      <div class="status"></div>
+    </form>
+  </div>
+</section>
+
+<!-- صفحه انتقادات -->
+<section class="page" id="complaint">
+  <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
+  <div class="card">
+    <div class="icon">📝</div>
+    <h2>واحد انتقادات و پیشنهادها</h2>
+    <p class="muted">هر شکایت، یک فرصت برای بررسی وضعیت موجود است!</p>
+    <form class="send-form">
+      <input type="hidden" name="بخش" value="انتقادات و پیشنهادها">
+      <label>نوع پرونده</label>
+      <select name="نوع پرونده" required>
+        <option value="">انتخاب کنید</option>
+        <option>تأخیر در پاسخ‌گویی</option>
+        <option>بدقولی دوستانه</option>
+        <option>مطالبات سوغاتی مشهد</option>
+        <option>اختلاف‌نظر کلاسی</option>
+        <option>پیشنهاد برای بهبود خدمات</option>
+        <option>سایر موارد</option>
+      </select>
+      <label>شرح انتقاد یا پیشنهاد</label>
+      <textarea name="شرح" required placeholder="موضوع را شرح دهید..."></textarea>
+      <label>درجه اهمیت</label>
+      <select name="اهمیت">
+        <option>عادی</option>
+        <option>مهم</option>
+        <option>فوق‌العاده مهم (از نظر ثبت‌کننده)</option>
+      </select>
+      <button class="btn" type="submit">ثبت پرونده</button>
+      <div class="status"></div>
+    </form>
+  </div>
+</section>
+
+<!-- صفحه مشهد -->
+<section class="page" id="mashhad">
+  <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
+  <div class="card">
+    <div class="icon">🛍️</div>
+    <h2>واحد پیگیری مطالبات مشهد</h2>
+    <p class="muted">
+      پرونده‌های سوغاتی در دست بررسی هستند.
+      لطفاً درخواست خود را برای ثبت در سامانه ارسال کنید.
+    </p>
+    <form class="send-form">
+      <input type="hidden" name="بخش" value="پیگیری مطالبات مشهد">
+      <label>نوع درخواست</label>
+      <select name="نوع درخواست" required>
+        <option value="">انتخاب کنید</option>
+        <option>درخواست سوغاتی</option>
+        <option>پیگیری وعده قبلی</option>
+        <option>گزارش وضعیت سفر</option>
+        <option>درخواست توضیحات درباره سفر</option>
+        <option>ثبت یادآوری دوستانه</option>
+      </select>
+      <label>سوغاتی یا موضوع موردنظر</label>
+      <input name="موضوع مطالبه" placeholder="مثلاً یک سوغاتی ویژه">
+      <label>توضیحات</label>
+      <textarea name="توضیحات" required placeholder="شرح درخواست..."></textarea>
+      <button class="btn" type="submit">ثبت مطالبه</button>
+      <div class="status"></div>
+    </form>
+  </div>
+</section>
+
+<!-- صفحه ارزیابی -->
+<section class="page" id="rating">
+  <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
+  <div class="card">
+    <div class="icon">⭐</div>
+    <h2>ارزیابی عملکرد خلیل</h2>
+    <p class="muted">نظرسنجی دوستانه؛ نتیجه براساس نظرات ثبت‌شده است.</p>
+    <form class="send-form">
+      <input type="hidden" name="بخش" value="ارزیابی عملکرد">
+      <label>امتیاز کلی</label>
+      <select name="امتیاز" required>
+        <option value="">انتخاب امتیاز</option>
+        <option>⭐ - نیازمند بررسی</option>
+        <option>⭐⭐ - قابل قبول</option>
+        <option>⭐⭐⭐ - خوب</option>
+        <option>⭐⭐⭐⭐ - خیلی خوب</option>
+        <option>⭐⭐⭐⭐⭐ - عملکرد عالی</option>
+      </select>
+      <label>نقطه قوت یا پیشنهاد شما</label>
+      <textarea name="نظر" required placeholder="نظر خود را بنویسید..."></textarea>
+      <button class="btn" type="submit">ثبت ارزیابی</button>
+      <div class="status"></div>
+    </form>
+  </div>
+</section>
+
+<!-- صفحه درخواست ویژه -->
+<section class="page" id="special">
+  <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
+  <div class="card">
+    <div class="icon">📋</div>
+    <h2>ثبت درخواست ویژه</h2>
+    <p class="muted">برای مواردی که هنوز در فهرست خدمات تعریف نشده‌اند.</p>
+    <form class="send-form">
+      <input type="hidden" name="بخش" value="درخواست ویژه">
+      <label>عنوان درخواست</label>
+      <input name="عنوان" required placeholder="عنوان درخواست شما">
+      <label>توضیحات کامل</label>
+      <textarea name="توضیحات" required placeholder="درخواست خود را توضیح دهید..."></textarea>
+      <label>اولویت</label>
+      <select name="اولویت">
+        <option>عادی</option>
+        <option>مهم</option>
+        <option>فوری</option>
+      </select>
+      <button class="btn" type="submit">ارسال درخواست</button>
+      <div class="status"></div>
+    </form>
+  </div>
+</section>
+
+<p class="note">
+  پیام‌ها ممکن است توسط مدیر سامانه مشاهده شوند. اطلاعات خصوصی،
+  رمزها یا مطالبی را که اجازه انتشارشان را ندارید ارسال نکنید.
+</p>
+</main>
+
+<footer>
+  KHALIL SERVICE CENTER · پیگیری سوغاتی‌ها تا اطلاع ثانوی ادامه دارد.
+</footer>
+
+<script>
+// تغییر صفحه داخل همین فایل HTML
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  history.replaceState(null, '', '#' + id);
+}
+
+function goToServices() {
+  document.getElementById('serviceHeading').scrollIntoView({
+    behavior:'smooth', block:'start'
+  });
+}
+
+// اتصال هر شش فرم به Supabase
+const SUPABASE_URL = 'https://oeqxkwgswhratpnlfgnu.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_dS_jLZwZ7AykfCKgTw47rA_IQAq9rfA';
+
+document.querySelectorAll('.send-form').forEach(form => {
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    const status = form.querySelector('.status');
+    const button = form.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+
+    if (!form.reportValidity()) return;
+
+    const formData = new FormData(form);
+    const section = formData.get('بخش');
+    formData.delete('بخش');
+    const data = Object.fromEntries(formData.entries());
+
+    button.disabled = true;
+    button.textContent = 'در حال ارسال...';
+    status.className = 'status';
+    status.textContent = 'در حال ذخیره درخواست...';
+    status.style.display = 'block';
+
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/khalil_requests`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ section, form_data: data })
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || `HTTP ${response.status}`);
+      }
+
+      status.className = 'status ok';
+      status.textContent = 'درخواست با موفقیت ثبت شد! ✅';
+      form.reset();
+    } catch (error) {
+      console.error('Supabase submission error:', error);
+      status.className = 'status error';
+      status.textContent = 'ثبت درخواست ناموفق بود؛ اتصال اینترنت و تنظیمات دسترسی دیتابیس را بررسی کنید.';
+    } finally {
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  });
+});
+
+// باز کردن مستقیم صفحه از طریق آدرس #message و موارد مشابه
+const initialPage = location.hash.slice(1);
+if (initialPage && document.getElementById(initialPage)?.classList.contains('page')) {
+  showPage(initialPage);
+}
+</script>
+</body>
+</html>
