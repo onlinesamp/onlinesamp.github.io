@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
@@ -9,12 +8,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap');
 
 :root {
-  --bg:#0b0e13;
-  --card:#151a23;
-  --border:#2a303c;
-  --text:#f4f6fa;
-  --muted:#a0a9b9;
-  --green:#b7ff62;
+  color-scheme: dark;
+  --bg:#09070b;
+  --card:#171019;
+  --border:#42233b;
+  --text:#fff4fb;
+  --muted:#c6a9bd;
+  --green:#ff5ac8;
+  --pink:#ff5ac8;
+  --pink-light:#ff9be0;
+  --pink-deep:#d91b91;
+}
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg:#fff5fb;
+  --card:#ffffff;
+  --border:#f2c5e3;
+  --text:#311327;
+  --muted:#805a73;
+  --green:#e52a9e;
+  --pink:#e52a9e;
+  --pink-light:#ff9be0;
+  --pink-deep:#b81776;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -28,90 +43,115 @@ header{
   border-bottom:1px solid var(--border);
 }
 .nav{
-  max-width:1050px;margin:auto;padding:15px 20px;
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  max-width:1100px;margin:auto;padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
 }
-.logo{font-size:20px;font-weight:900;color:white;cursor:pointer}
-.logo span{color:var(--green)}
-nav{display:flex;gap:15px;flex-wrap:wrap}
-nav button{
-  background:none;border:0;color:var(--muted);
-  font:inherit;font-size:12px;cursor:pointer
+.logo{
+  font-size:23px;font-weight:900;cursor:pointer;color:white;
+  letter-spacing:1px;white-space:nowrap;
 }
-nav button:hover{color:var(--green)}
-main{max-width:1050px;margin:auto;padding:25px 20px 70px}
+.logo span{color:var(--pink)}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+nav button,.theme-toggle{
+  background:transparent;color:var(--text);border:1px solid transparent;
+  border-radius:10px;padding:9px 12px;font:inherit;font-size:12px;cursor:pointer;
+}
+nav button:hover,.theme-toggle:hover{border-color:var(--pink);color:var(--pink)}
+main{max-width:1100px;margin:auto;padding:30px 20px 60px;min-height:75vh}
 .hero{
-  padding:55px 30px;border:1px solid var(--border);
-  border-radius:25px;
-  background:radial-gradient(ellipse at top left,#b7ff6217,transparent 50%),
-  linear-gradient(140deg,#171e29,#10131a);
+  position:relative;overflow:hidden;padding:48px 35px;
+  background:linear-gradient(135deg,#291326,#100b13 70%);
+  border:1px solid #693052;border-radius:25px;margin-bottom:35px;
+}
+.hero:after{
+  content:"";position:absolute;width:280px;height:280px;left:-80px;top:-100px;
+  border-radius:50%;background:#ff5ac81a;filter:blur(5px);pointer-events:none;
+}
+.hero-brand{display:flex;align-items:center;gap:16px;margin-bottom:15px}
+.hero-brand img,.section-brand img{
+  width:68px;height:68px;object-fit:cover;border-radius:18px;
+  border:1px solid #ff65c8;background:#1a101b;
 }
 .tag{
-  display:inline-block;color:var(--green);
-  border:1px solid #b7ff6250;border-radius:30px;
-  padding:7px 12px;font-size:12px;
+  display:inline-block;background:#ff5ac81a;color:var(--pink-light);
+  border:1px solid #ff5ac844;padding:6px 12px;border-radius:30px;font-size:11px;
 }
-h1{font-size:clamp(30px,6vw,52px);line-height:1.5;margin:20px 0 10px}
-h1 span{color:var(--green)}
-h2{font-size:25px}
-h3{margin:12px 0 5px}
+h1{font-size:clamp(32px,6vw,54px);line-height:1.5;margin:10px 0}
+h1 span{color:var(--pink)}
+h2{font-size:24px;margin:0 0 12px}
+h3{font-size:17px;margin:12px 0}
 p{line-height:2}
-.muted{color:var(--muted)}
+.muted{color:var(--muted);font-size:13px}
 .btn{
-  display:inline-block;padding:12px 17px;
-  background:var(--green);color:#11160b;
-  border:0;border-radius:11px;font:inherit;
-  font-weight:900;cursor:pointer;text-decoration:none;
-  margin-top:10px;
+  display:inline-block;border:0;border-radius:12px;padding:12px 18px;
+  background:linear-gradient(135deg,var(--pink-light),var(--pink-deep));
+  color:white;font:inherit;font-weight:700;cursor:pointer;transition:.2s;
 }
-.btn:hover{filter:brightness(.9)}
-.btn.secondary{background:#252c38;color:white}
-.section-title{margin:40px 0 20px}
-.section-title p{font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.section-title{margin:30px 0 18px}
+.section-title h2{margin-bottom:5px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .card{
-  padding:23px;background:var(--card);
-  border:1px solid var(--border);border-radius:20px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:22px;margin-bottom:20px;
 }
 .service-card{cursor:pointer;transition:.2s}
-.service-card:hover{border-color:var(--green);transform:translateY(-3px)}
+.service-card:hover{border-color:var(--pink);transform:translateY(-3px)}
 .icon{font-size:30px}
 .card p{font-size:13px;color:var(--muted)}
 .page{display:none}
 .page.active{display:block;animation:appear .2s ease}
 @keyframes appear{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .back{
-  background:#202631;color:white;border:1px solid var(--border);
-  border-radius:10px;padding:10px 14px;font:inherit;cursor:pointer;
-  margin-bottom:20px;
+  background:var(--card);color:var(--text);border:1px solid var(--border);
+  border-radius:10px;padding:10px 14px;font:inherit;cursor:pointer;margin-bottom:20px;
 }
-.back:hover{border-color:var(--green)}
+.back:hover{border-color:var(--pink)}
+.section-brand{display:flex;align-items:center;gap:12px;margin:0 0 20px}
+.section-brand img{width:48px;height:48px;border-radius:14px}
+.section-brand strong{font-size:18px;color:var(--pink)}
 label{display:block;margin:15px 0 7px;font-size:13px}
 input,select,textarea{
-  width:100%;padding:13px;background:#0c1017;color:white;
-  border:1px solid var(--border);border-radius:11px;
-  font:inherit;outline:none;
+  width:100%;padding:13px;background:var(--bg);color:var(--text);
+  border:1px solid var(--border);border-radius:11px;font:inherit;outline:none;
 }
-input:focus,select:focus,textarea:focus{border-color:var(--green)}
+input:focus,select:focus,textarea:focus{border-color:var(--pink)}
 textarea{resize:vertical;min-height:115px}
 .note{
-  border-right:3px solid var(--green);padding:10px 14px;
-  background:#b7ff620a;color:var(--muted);
-  font-size:12px;line-height:2;margin-top:25px
+  border-right:3px solid var(--pink);padding:10px 14px;
+  background:#ff5ac80a;color:var(--muted);font-size:12px;line-height:2;margin-top:25px
 }
 .status{display:none;padding:13px;border-radius:10px;margin-top:15px;font-size:13px}
-.status.ok{display:block;background:#202e1a;color:var(--green)}
+.status.ok{display:block;background:#202e1a;color:#baffc0}
 .status.error{display:block;background:#351b20;color:#ffb6b6}
 button:disabled{opacity:.6;cursor:wait}
 footer{
   text-align:center;padding:25px 15px;border-top:1px solid var(--border);
   color:var(--muted);font-size:12px
 }
+footer .footer-logo{
+  width:34px;height:34px;object-fit:cover;vertical-align:middle;
+  border-radius:50%;border:1px solid #ff65c8;margin-left:8px
+}
+.theme-area{display:flex;justify-content:flex-end;margin-bottom:15px}
+html[data-theme="light"] .hero{
+  background:linear-gradient(135deg,#ffe2f4,#fff7fc 75%);
+  border-color:#f2c5e3;
+}
+html[data-theme="light"] .hero:after{background:#ff5ac81a}
+html[data-theme="light"] .logo{color:#311327}
+html[data-theme="light"] header{background:#fff5fbed}
+html[data-theme="light"] .back{background:#fff}
+html[data-theme="light"] .note{background:#ff5ac80a}
+html[data-theme="light"] .status.ok{background:#e6f8e8;color:#246b32}
 @media(max-width:650px){
   .grid{grid-template-columns:1fr}
-  .hero{padding:35px 20px}
-  nav{gap:8px}
-  nav button{font-size:11px}
+  .hero{padding:28px 20px}
+  .nav{align-items:flex-start;flex-direction:column}
+  nav{gap:5px}
+  nav button{font-size:11px;padding:8px}
+  main{padding:20px 14px 40px}
+  .hero-brand img{width:56px;height:56px}
 }
 </style>
 </head>
@@ -125,16 +165,26 @@ footer{
       <button onclick="showPage('message')">پیام</button>
       <button onclick="showPage('night')">خدمات شبانه</button>
       <button onclick="showPage('complaint')">انتقادات</button>
+      <button class="theme-toggle" onclick="toggleTheme()">☀️ / 🌙</button>
     </nav>
   </div>
 </header>
 
 <main>
+<div class="theme-area">
+  <button class="theme-toggle" onclick="toggleTheme()">تغییر حالت روشن / تاریک</button>
+</div>
 
 <!-- صفحه اصلی -->
 <section class="page active" id="home">
   <div class="hero">
-    <span class="tag">سامانه رسمی خدمات • نسخه ۱.۰</span>
+    <div class="hero-brand">
+      <img src="#khalil-logo" alt="لوگوی خلیل">
+      <div>
+        <span class="tag">سامانه رسمی خدمات • نسخه ۱.۰</span>
+        <p class="muted" style="margin:8px 0 0">Khalil.site</p>
+      </div>
+    </div>
     <h1>مرکز خدمات<br><span>خلیل</span></h1>
     <p class="muted">
       به سامانه درخواست‌های خلیل خوش آمدید.
@@ -202,6 +252,7 @@ footer{
 
 <!-- صفحه پیام -->
 <section class="page" id="message">
+  <div class="section-brand"><img src="#khalil-logo" alt="لوگوی خلیل"><strong>Khalil.site</strong></div>
   <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
   <div class="card">
     <div class="icon">📨</div>
@@ -231,6 +282,7 @@ footer{
 
 <!-- صفحه خدمات شبانه -->
 <section class="page" id="night">
+  <div class="section-brand"><img src="#khalil-logo" alt="لوگوی خلیل"><strong>Khalil.site</strong></div>
   <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
   <div class="card">
     <div class="icon">🌙</div>
@@ -264,6 +316,7 @@ footer{
 
 <!-- صفحه انتقادات -->
 <section class="page" id="complaint">
+  <div class="section-brand"><img src="#khalil-logo" alt="لوگوی خلیل"><strong>Khalil.site</strong></div>
   <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
   <div class="card">
     <div class="icon">📝</div>
@@ -297,6 +350,7 @@ footer{
 
 <!-- صفحه مشهد -->
 <section class="page" id="mashhad">
+  <div class="section-brand"><img src="#khalil-logo" alt="لوگوی خلیل"><strong>Khalil.site</strong></div>
   <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
   <div class="card">
     <div class="icon">🛍️</div>
@@ -328,6 +382,7 @@ footer{
 
 <!-- صفحه ارزیابی -->
 <section class="page" id="rating">
+  <div class="section-brand"><img src="#khalil-logo" alt="لوگوی خلیل"><strong>Khalil.site</strong></div>
   <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
   <div class="card">
     <div class="icon">⭐</div>
@@ -354,106 +409,131 @@ footer{
 
 <!-- صفحه درخواست ویژه -->
 <section class="page" id="special">
+  <div class="section-brand"><img src="#khalil-logo" alt="لوگوی خلیل"><strong>Khalil.site</strong></div>
   <button class="back" onclick="showPage('home')">← بازگشت به خدمات</button>
   <div class="card">
     <div class="icon">📋</div>
-    <h2>ثبت درخواست ویژه</h2>
-    <p class="muted">برای مواردی که هنوز در فهرست خدمات تعریف نشده‌اند.</p>
+    <h2>درخواست ویژه</h2>
+    <p class="muted">درخواست خود را بنویسید تا ثبت شود.</p>
     <form class="send-form">
       <input type="hidden" name="بخش" value="درخواست ویژه">
-      <label>عنوان درخواست</label>
-      <input name="عنوان" required placeholder="عنوان درخواست شما">
-      <label>توضیحات کامل</label>
-      <textarea name="توضیحات" required placeholder="درخواست خود را توضیح دهید..."></textarea>
+      <label>موضوع درخواست</label>
+      <input name="موضوع" required placeholder="موضوع درخواست">
+      <label>شرح درخواست</label>
+      <textarea name="شرح" required placeholder="جزئیات درخواست خود را بنویسید..."></textarea>
       <label>اولویت</label>
       <select name="اولویت">
         <option>عادی</option>
         <option>مهم</option>
         <option>فوری</option>
       </select>
-      <button class="btn" type="submit">ارسال درخواست</button>
+      <button class="btn" type="submit">ثبت درخواست ←</button>
       <div class="status"></div>
     </form>
   </div>
 </section>
-
-<p class="note">
-  پیام‌ها ممکن است توسط مدیر سامانه مشاهده شوند. اطلاعات خصوصی،
-  رمزها یا مطالبی را که اجازه انتشارشان را ندارید ارسال نکنید.
-</p>
 </main>
 
 <footer>
-  KHALIL SERVICE CENTER · پیگیری سوغاتی‌ها تا اطلاع ثانوی ادامه دارد.
+  <img class="footer-logo" src="#khalil-logo" alt="لوگوی خلیل">
+  KHALIL SERVICE CENTER · RJF8 · پیگیری سوغاتی‌ها تا اطلاع ثانوی ادامه دارد.
 </footer>
 
 <script>
-// تغییر صفحه داخل همین فایل HTML
+/* تنظیمات اتصال فرم‌ها */
+const SUPABASE_URL = "https://oeqxkwgswhratpnlfgnu.supabase.co";
+const SUPABASE_KEY = "sb_publishable_dS_jLZwZ7AykfCKgTw47rA_IQAq9rfA";
+const SUPABASE_TABLE = "khalil_requests";
+
+/* لوگو در کد اصلی با تصویر تعبیه‌شده جایگزین می‌شود. */
+const LOGO_DATA = "";
+
+document.querySelectorAll('img[src="#khalil-logo"]').forEach(img => {
+  if (LOGO_DATA) img.src = LOGO_DATA;
+  else {
+    img.style.display = "none";
+  }
+});
+
 function showPage(id) {
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
+  document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
   const target = document.getElementById(id);
-  if (target) target.classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
-  history.replaceState(null, '', '#' + id);
+  if (target) {
+    target.classList.add("active");
+    history.replaceState(null, "", "#" + id);
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
 }
 
 function goToServices() {
-  document.getElementById('serviceHeading').scrollIntoView({
-    behavior:'smooth', block:'start'
-  });
+  document.getElementById("serviceHeading").scrollIntoView({behavior:"smooth"});
 }
 
-// اتصال هر شش فرم به Supabase
-const SUPABASE_URL = 'https://oeqxkwgswhratpnlfgnu.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_dS_jLZwZ7AykfCKgTw47rA_IQAq9rfA';
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  try { localStorage.setItem("khalil-site-theme", theme); } catch(e) {}
+}
 
-document.querySelectorAll('.send-form').forEach(form => {
-  form.addEventListener('submit', async event => {
+function toggleTheme() {
+  const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  applyTheme(next);
+}
+
+try {
+  const savedTheme = localStorage.getItem("khalil-site-theme");
+  applyTheme(savedTheme === "light" ? "light" : "dark");
+} catch(e) {
+  applyTheme("dark");
+}
+
+document.querySelectorAll(".send-form").forEach(form => {
+  form.addEventListener("submit", async event => {
     event.preventDefault();
-
-    const status = form.querySelector('.status');
     const button = form.querySelector('button[type="submit"]');
+    const status = form.querySelector(".status");
     const originalText = button.textContent;
+    const data = {};
 
-    if (!form.reportValidity()) return;
-
-    const formData = new FormData(form);
-    const section = formData.get('بخش');
-    formData.delete('بخش');
-    const data = Object.fromEntries(formData.entries());
+    new FormData(form).forEach((value, key) => {
+      data[key] = value;
+    });
 
     button.disabled = true;
-    button.textContent = 'در حال ارسال...';
-    status.className = 'status';
-    status.textContent = 'در حال ذخیره درخواست...';
-    status.style.display = 'block';
+    button.textContent = "در حال ارسال...";
+    status.className = "status";
+    status.style.display = "block";
+    status.textContent = "در حال ثبت درخواست شما...";
 
     try {
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/khalil_requests`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ section, form_data: data })
-      });
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/${SUPABASE_TABLE}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_KEY,
+            "Authorization": `Bearer ${SUPABASE_KEY}`,
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify({
+            section: data["بخش"] || "درخواست",
+            form_data: data
+          })
+        }
+      );
 
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || `HTTP ${response.status}`);
+        const details = await response.text();
+        throw new Error(details || "خطا در ثبت درخواست");
       }
 
-      status.className = 'status ok';
-      status.textContent = 'درخواست با موفقیت ثبت شد! ✅';
+      status.className = "status ok";
+      status.textContent = "درخواست با موفقیت ثبت شد. ممنون!";
       form.reset();
     } catch (error) {
-      console.error('Supabase submission error:', error);
-      status.className = 'status error';
-      status.textContent = 'ثبت درخواست ناموفق بود؛ اتصال اینترنت و تنظیمات دسترسی دیتابیس را بررسی کنید.';
+      status.className = "status error";
+      status.textContent = "ثبت درخواست انجام نشد. اتصال اینترنت و تنظیمات سامانه را بررسی کنید.";
+      console.error("Submit error:", error);
     } finally {
       button.disabled = false;
       button.textContent = originalText;
@@ -463,7 +543,7 @@ document.querySelectorAll('.send-form').forEach(form => {
 
 // باز کردن مستقیم صفحه از طریق آدرس #message و موارد مشابه
 const initialPage = location.hash.slice(1);
-if (initialPage && document.getElementById(initialPage)?.classList.contains('page')) {
+if (initialPage && document.getElementById(initialPage)?.classList.contains("page")) {
   showPage(initialPage);
 }
 </script>
